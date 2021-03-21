@@ -47,7 +47,14 @@ int main()
     // Sort the vector
     std::sort(websites.begin(), websites.end(), [](const Website &lhs, const Website &rhs)
     {
-        return lhs.numberOfUrls < rhs.numberOfUrls;
+        if(lhs.numberOfUrls == rhs.numberOfUrls)
+        {
+            return lhs.url < rhs.url;   // Sort lexiographically
+        }
+        else
+        {
+            return lhs.numberOfUrls < rhs.numberOfUrls; // Sort by number of visits.
+        }
     });
 
     std::vector<Website>::iterator it1 = websites.begin();
