@@ -21,6 +21,18 @@ class Website
         url = url1;
     }
 };
+
+bool SortingLogicPredicateWithoutLambda(const Website& lhs, const Website& rhs)
+{
+    if(lhs.numberOfUrls == rhs.numberOfUrls)
+    {
+        return lhs.url < rhs.url;   // Sort lexiographically
+    }
+    else
+    {
+        return lhs.numberOfUrls < rhs.numberOfUrls; // Sort by number of visits.
+    }
+}
 int main()
 {
     std::vector<Website> websites;
@@ -43,9 +55,13 @@ int main()
         cout << it->url << endl;
     }
     cout << endl;
+    
+    // Sort with predicate in form of function
+    std::sort(websites.begin(), websites.end(), SortingLogicPredicateWithoutLambda);
+    
     // Use the predicate in form of lambda expression
     // Sort the vector
-    std::sort(websites.begin(), websites.end(), [](const Website &lhs, const Website &rhs)
+    /*std::sort(websites.begin(), websites.end(), [](const Website &lhs, const Website &rhs)
     {
         if(lhs.numberOfUrls == rhs.numberOfUrls)
         {
@@ -55,7 +71,7 @@ int main()
         {
             return lhs.numberOfUrls < rhs.numberOfUrls; // Sort by number of visits.
         }
-    });
+    });*/
 
     std::vector<Website>::iterator it1 = websites.begin();
     for(; it1 != websites.end(); ++it1)
